@@ -1,1 +1,1 @@
-# C_languague_ex
+# Programming exercises from class IT3210
