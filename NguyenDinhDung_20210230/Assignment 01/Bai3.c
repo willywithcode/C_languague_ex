@@ -95,8 +95,13 @@ int main() {
                 printf("Enter student name: ");
                 fgets(name, MAX_NAME_LENGTH, stdin);
                 name[strcspn(name, "\n")] = '\0'; 
-                printf("%s\t", students[find_student_by_name(students,count,name)].name);
-                printf("%d\n", students[find_student_by_name(students,count,name)].score);
+                if (find_student_by_name(students,count,name) == -1) printf("Khong tim thay hoc sinh\n");
+                else {
+
+                    printf("%s\t", students[find_student_by_name(students,count,name)].name);
+                    printf("%d\n", students[find_student_by_name(students,count,name)].score);
+
+                }
                 break;
             case 4:
                 return 0;
