@@ -60,9 +60,9 @@ int find_student_by_name(Student students[], int count, const char *name) {
 }
 
 int main() {
-    const char *file_name = "SV2023.dat";
+    const char *file_name = "Sv2023.dat";
     Student students[MAX_STUDENTS];
-    int count = 0;
+    int count = read_students_from_file(file_name, students);
 
     int choice;
     do {
@@ -76,22 +76,27 @@ int main() {
 
         switch (choice) {
             case 1:
-                count = read_students_from_file(file_name, students);
                 print_students(students, count);
                 break;
             case 2:
+                getchar();
                 printf("Enter student name: ");
-                scanf("%s", students[count].name);
+                fgets(students[count].name, MAX_NAME_LENGTH, stdin);
+                students[count].name[strcspn(students[count].name, "\n")] = '\0'; 
                 printf("Enter student score: ");
                 scanf("%d", &students[count].score);
                 count++;
                 write_students_to_file(file_name, students, count);
                 break;
+
             case 3:
                 char name[MAX_NAME_LENGTH];
-                fgets(name,MAX_NAME_LENGTH,stdin);
+                getchar();
+                printf("Enter student name: ");
+                fgets(name, MAX_NAME_LENGTH, stdin);
+                name[strcspn(name, "\n")] = '\0'; 
                 printf("%s\t", students[find_student_by_name(students,count,name)].name);
-                printf("%d", students[find_student_by_name(students,count,name)].score);
+                printf("%d\n", students[find_student_by_name(students,count,name)].score);
                 break;
             case 4:
                 return 0;
