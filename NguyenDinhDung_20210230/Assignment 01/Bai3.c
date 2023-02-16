@@ -60,6 +60,8 @@ int find_student_by_name(Student students[], int count, const char *name) {
 }
 
 int main() {
+
+    FILE* print = fopen("output.txt", "w+");
     const char *file_name = "Sv2023.dat";
     Student students[MAX_STUDENTS];
     int count = read_students_from_file(file_name, students);
@@ -100,6 +102,7 @@ int main() {
 
                     printf("%s\t", students[find_student_by_name(students,count,name)].name);
                     printf("%d\n", students[find_student_by_name(students,count,name)].score);
+                    fprintf(print, "%s %d",students[find_student_by_name(students,count,name)].name,students[find_student_by_name(students,count,name)].score);
 
                 }
                 break;
