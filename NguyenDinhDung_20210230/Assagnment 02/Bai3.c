@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     FILE *fp;
-    char datetime[20];
+    char date[20];
+    char time[20];
     float temp;
     float total_temp = 0, temp1 = 0, temp2 = 0, temp3 = 0;
     int count = 0, count1 = 0, count2 = 0, count3 = 0;
@@ -12,10 +14,14 @@ int main() {
         printf("Cannot open file");
         return 1;
     }
+    // fscanf(fp, "%s %s %f", date,time, &temp);
+    // int hour = atoi(time);
+    // printf("%s %f %d\n",time,temp,hour);
 
-    while (fscanf(fp, "%s %f", datetime, &temp) != EOF) {
+    while (fscanf(fp, "%s %s %f", date, time, &temp) != EOF) {
         int hour;
-        sscanf(datetime + 11, "%d", &hour);
+        // sscanf(datetime + 11, "%d", &hour);
+        hour = atoi(time);
         total_temp += temp;
         count++;
         if (hour >= 5 && hour < 16) {
@@ -29,6 +35,7 @@ int main() {
             count3++;
         }
     }
+
 
     printf("Average temperature for the day: %.3f\n", total_temp/count);
     printf("Average temperature from 5:00 to 15:59:59: %.3f\n", temp1/count1);
