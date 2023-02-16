@@ -42,13 +42,23 @@ int main() {
 
   
   for (int i =0; i <NUM_PLAYERS ; i ++) {
-    printf("Player %d: ", i);
+    printf("Player %d: ", i+1);
     for (int j = 0; j < NUM_CARDS; j ++) {
       if (d[j / NUM_PLAYERS][j % NUM_PLAYERS] == i) {
         PRINT_CARD(j);
       }
     }
     printf("\n");
+  }
+  for (int i = 0; i < CARDS_PER_PLAYER; i ++) {
+    if (d[i][0] == d[i][1] && d[i][1] == d[i][2] && d[i][2] == d[i][3]) {
+      printf("Player %d co tu quy ",d[i][0] +1);
+      if (i == 0) printf("ACE\n");
+      else if (i == 10) printf("JACK\n");
+      else if (i == 11) printf("QUEEN\n");
+      else if (i == 12) printf("KING\n");
+      else printf("%d\n",i+1);
+    }
   }
 
   return 0;
